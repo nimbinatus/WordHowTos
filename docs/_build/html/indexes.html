@@ -123,13 +123,18 @@ switch:</p>
 </div>
 <div class="section" id="text-substitution-switch">
 <h3>Text Substitution Switch<a class="headerlink" href="#text-substitution-switch" title="Permalink to this headline">¶</a></h3>
-<p>To note a different entry for reference, use the <code class="docutils literal"><span class="pre">\t</span></code> switch.</p>
-<blockquote>
-<div><code class="docutils literal"><span class="pre">{</span> <span class="pre">XE</span> <span class="pre">&quot;Entry:subentry&quot;</span> <span class="pre">\t</span> <span class="pre">&quot;(``*see*</span></code> Entry 2)&#8221; }``</div></blockquote>
+<p>To note a different entry for reference, use the <code class="docutils literal"><span class="pre">\t</span></code> switch.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">XE</span> <span class="s2">&quot;Entry:subentry&quot;</span> \<span class="n">t</span> <span class="s2">&quot;(*see* Entry 2)&quot;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that asterisks indicate italics here.</p>
 <p>To have an entry appear at a different spot than its alphabetical spot (e.g., a
 &#8220;see also&#8221; note at the end of a list), use a semicolon to prove a separate
 alphabetical index term with an empty text substitution switch:</p>
-<p> { XE &#8220;Entry:<em>See also</em> Entry 2;zz&#8221; t &#8220;&#8221; }</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">XE</span> <span class="s2">&quot;Entry:*See also* Entry 2;zz&quot;</span> \<span class="n">t</span> <span class="s2">&quot;&quot;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that asterisks indicate italics here.</p>
 <p>In this case, the entry would appear at the end of the list (as <em>zz</em> is at the
 very end of an alphebetized list since very few, if any, words in most English
 indexes would begin with <em>zz</em>) as follows:</p>

@@ -84,15 +84,19 @@ switch: ::
 
 Text Substitution Switch
 ------------------------
-To note a different entry for reference, use the ``\t`` switch.
+To note a different entry for reference, use the ``\t`` switch.::
 
-    ``{ XE "Entry:subentry" \t "(``*see*`` Entry 2)" }``
+    { XE "Entry:subentry" \t "(*see* Entry 2)" }
+
+Note that asterisks indicate italics here.
 
 To have an entry appear at a different spot than its alphabetical spot (e.g., a
 "see also" note at the end of a list), use a semicolon to prove a separate
-alphabetical index term with an empty text substitution switch:
+alphabetical index term with an empty text substitution switch: ::
 
-\  { XE "Entry:*See also* Entry 2;zz" \t "" }
+  { XE "Entry:*See also* Entry 2;zz" \t "" }
+
+Note that asterisks indicate italics here.
 
 In this case, the entry would appear at the end of the list (as *zz* is at the
 very end of an alphebetized list since very few, if any, words in most English
