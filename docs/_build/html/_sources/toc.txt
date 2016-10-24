@@ -1,6 +1,6 @@
-=========================
-Table of Contents in Word
-=========================
+====================================
+Generating Table of Contents in Word
+====================================
 
 Fields in Word can be used to create automatically updating Table of Contents
 (TOCs) for documents. While the graphical user interface (GUI) can be used to
