@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Generating Indexes in Word &#8212; WordHowTos 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="WordHowTos 0.1 documentation" href="index.html" />
+    <link rel="next" title="Generating Table of Contents in Word" href="toc.html" />
+    <link rel="prev" title="Welcome to the WordHowTos’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="generating-indexes-in-word">
+<h1>Generating Indexes in Word<a class="headerlink" href="#generating-indexes-in-word" title="Permalink to this headline">¶</a></h1>
+<p>Indexes are, frankly, time-eaters. A good index will take time to set up, and
+there are many resources (and opinions) on the topic of just how to choose what
+goes into an index, what a good one looks like, etc. Creating a basic one in
+Word, however, is fairly straight-forward.</p>
+<p>Fields in Word can be used to create automatically updating indexes for
+documents. While the graphical user interface (GUI) can be used to generate
+automatic indexes, using fields to mark the entries provides much more
+flexibility and power.</p>
+<div class="section" id="syntax-of-marked-entries">
+<h2>Syntax of Marked Entries<a class="headerlink" href="#syntax-of-marked-entries" title="Permalink to this headline">¶</a></h2>
+<p>When marking entries, use the <code class="docutils literal"><span class="pre">XE</span></code> field code. The field requires text that
+identifies what exactly the entry will be. For example, perhaps commas might be
+a topic to tag for an index entry. The index entry for commas might simply be
+<em>Commas</em>, so each index entry field code would be:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">XE</span> <span class="s2">&quot;Commas&quot;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>no matter whether it would appear with the word <em>comma</em> or with a paragraph
+mentioning when to use commas.</p>
+<p>To get a subentry (i.e., a level 2 entry), use a colon in the text with a main
+topic before the colon and the subtopic after the colon.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">XE</span> <span class="s2">&quot;Entry:subentry&quot;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>The field uses multiple switches, or modifiers.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">\b</span></code>: the bolding switch</li>
+<li><code class="docutils literal"><span class="pre">\f</span></code>: the type switch</li>
+<li><code class="docutils literal"><span class="pre">\i</span></code>: the italic switch</li>
+<li><code class="docutils literal"><span class="pre">\r</span></code>: the bookmark switch</li>
+<li><code class="docutils literal"><span class="pre">\t</span></code>: the text substitution switch</li>
+<li><code class="docutils literal"><span class="pre">\y</span></code>: the alternative character switch</li>
+</ul>
+<div class="section" id="bolding-switch">
+<h3>Bolding Switch<a class="headerlink" href="#bolding-switch" title="Permalink to this headline">¶</a></h3>
+<p>Use the bolding switch, <code class="docutils literal"><span class="pre">\b</span></code>, to bold that page number in the index for the
+entry. This switch is often used to indicate where the reader may find the most
+important information about an entry.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">XE</span> <span class="s2">&quot;Entry&quot;</span> \<span class="n">b</span> <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="type-switch">
+<h3>Type Switch<a class="headerlink" href="#type-switch" title="Permalink to this headline">¶</a></h3>
+<p>The type switch, <code class="docutils literal"><span class="pre">\f</span></code>, indicates which type of entry the field is marking,
+often a consideration when building a list of figures, illustrations, or tables.
+This switch requires a single, unique letter as a type identifer; the letter
+itself does not necessarily have to match the exact type of entry (e.g., figures
+may be identifed with a <em>g</em> if necessary).</p>
+<p>For example, to indicate a table entry:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">XE</span> <span class="s2">&quot;Entry&quot;</span> \<span class="n">f</span> <span class="n">t</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>The related index would then use an entry identifier switch to generate a list
+of only tables.</p>
+<p>If nothing is specified with this switch, the entry automatically goes into a
+generic index.</p>
+</div>
+<div class="section" id="italic-switch">
+<h3>Italic Switch<a class="headerlink" href="#italic-switch" title="Permalink to this headline">¶</a></h3>
+<p>Use the italics switch, <code class="docutils literal"><span class="pre">\i</span></code>, to italicize that page number in the index for
+the entry.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">XE</span> <span class="s2">&quot;Entry&quot;</span> \<span class="n">i</span> <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="bookmark-switch">
+<h3>Bookmark Switch<a class="headerlink" href="#bookmark-switch" title="Permalink to this headline">¶</a></h3>
+<p>To provide page ranges in an index, use a bookmark to mark the entire section,
+and then use the bookmark switch, <code class="docutils literal"><span class="pre">\r</span></code>, to make the entry to span the entire
+bookmark&#8217;s page ranges. This example uses both the bookmark switch and the bold
+switch:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">XE</span> <span class="s2">&quot;Entry:subentry&quot;</span> \<span class="n">r</span> <span class="n">BookmarkName</span> \<span class="n">b</span> <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="text-substitution-switch">
+<h3>Text Substitution Switch<a class="headerlink" href="#text-substitution-switch" title="Permalink to this headline">¶</a></h3>
+<p>To note a different entry for reference, use the <code class="docutils literal"><span class="pre">\t</span></code> switch.</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">{</span> <span class="pre">XE</span> <span class="pre">&quot;Entry:subentry&quot;</span> <span class="pre">\t</span> <span class="pre">&quot;(``*see*</span></code> Entry 2)&#8221; }``</div></blockquote>
+<p>To have an entry appear at a different spot than its alphabetical spot (e.g., a
+&#8220;see also&#8221; note at the end of a list), use a semicolon to prove a separate
+alphabetical index term with an empty text substitution switch:</p>
+<p> { XE &#8220;Entry:<em>See also</em> Entry 2;zz&#8221; t &#8220;&#8221; }</p>
+<p>In this case, the entry would appear at the end of the list (as <em>zz</em> is at the
+very end of an alphebetized list since very few, if any, words in most English
+indexes would begin with <em>zz</em>) as follows:</p>
+<dl class="docutils">
+<dt> Entry</dt>
+<dd>[...]
+See also <em>Entry 2</em>.</dd>
+</dl>
+<p>Note that the italics switched. This is a function of how the index is set up.</p>
+</div>
+<div class="section" id="alternative-character-switch">
+<h3>Alternative Character Switch<a class="headerlink" href="#alternative-character-switch" title="Permalink to this headline">¶</a></h3>
+<p>The alternative character switch, <code class="docutils literal"><span class="pre">\y</span></code>, only is used when at least one East
+Asian language is enabled in the document. It sorts the entry by a different
+character than the character that begins the entry itself. This different
+character, called a <em>yomi</em>, provides the ability to phonetically sort
+non-English words. So, to get an entry to sort under the letter <em>D</em>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">XE</span> <span class="s2">&quot;Entry&quot;</span> \<span class="n">y</span> <span class="n">d</span> <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="generation-of-an-index">
+<h2>Generation of an Index<a class="headerlink" href="#generation-of-an-index" title="Permalink to this headline">¶</a></h2>
+<p>There are two methods to create an index: mark entries manually over time or
+create a table to auto-mark entries after the document is created.
+T
+Marking Entries
+&#8212;&#8212;&#8212;&#8212;&#8212;
+To mark an entry manually, place the cursor where the entry should refer (i.e.,
+after a specific word, at the beginning of a section, etc.). Next, go to
+<code class="docutils literal"><span class="pre">References</span> <span class="pre">&gt;</span> <span class="pre">Mark</span> <span class="pre">Entry</span></code> (under <code class="docutils literal"><span class="pre">Index</span></code>). A dialog box will appear. Enter
+in the data, and then choose <code class="docutils literal"><span class="pre">OK</span></code>. Looking under the paragraph marks will
+reveal the field with the <code class="docutils literal"><span class="pre">XE</span></code> field code and the data just entered.</p>
+<p>An alternate way of marking entries requires the document to be complete and
+index entries chosen. By creating a simple Excel spreadsheet with one column for
+the word that needs to be marked and one column for the index entry for that
+word, the <code class="docutils literal"><span class="pre">AutoMark</span></code> feature can be used. To import the spreadsheet for
+automatically marking the index entries, use <code class="docutils literal"><span class="pre">References</span> <span class="pre">&gt;</span> <span class="pre">Insert</span> <span class="pre">Index</span></code>
+(under <code class="docutils literal"><span class="pre">Index</span></code>). Choose <code class="docutils literal"><span class="pre">AutoMark…</span></code> at the bottom right. From the file
+dialog box, choose the simple Excel spreadsheet and then choose <code class="docutils literal"><span class="pre">OK</span></code>. Word
+will mark every instance of the entry&#8217;s appearance in the document. This can be
+detrimental as, for example, every occurrence of the word <em>enter</em> will be tagged
+&#8220;something&#8221; if this is used as an index entry. So the phrase &#8220;Enter your
+password&#8221; will be tagged as &#8220;Enter <code class="docutils literal"><span class="pre">[index</span> <span class="pre">entry</span> <span class="pre">field</span> <span class="pre">code]</span></code> your password&#8221; along
+with &#8220;the Enter <code class="docutils literal"><span class="pre">[index</span> <span class="pre">entry</span> <span class="pre">field</span> <span class="pre">code]</span></code> key is to the right.&#8221; Also, if the
+words <em>semicolon</em> and <em>semicolons</em> were in the index list to be tagged as
+&#8220;Punctuation, semicolon&#8221;, every instance of the word in a section on semicolons
+would be tagged:</p>
+<blockquote>
+<div>Semicolons <code class="docutils literal"><span class="pre">[index</span> <span class="pre">entry</span> <span class="pre">field</span> <span class="pre">code]</span></code> can be used in place of a
+coordinating conjunction in certain cases. For example, the semicolon
+<code class="docutils literal"><span class="pre">[index</span> <span class="pre">entry</span> <span class="pre">field</span> <span class="pre">code]</span></code> in &#8220;Semicolons <code class="docutils literal"><span class="pre">[index</span> <span class="pre">entry</span> <span class="pre">field</span> <span class="pre">code]</span></code> are
+used here; semicolons <code class="docutils literal"><span class="pre">[index</span> <span class="pre">entry</span> <span class="pre">field</span> <span class="pre">code]</span></code> are not used here.&#8221; is an
+accurate use, but the semicolon <code class="docutils literal"><span class="pre">[index</span> <span class="pre">entry</span> <span class="pre">field</span> <span class="pre">code]</span></code> in &#8220;Semicolons
+<code class="docutils literal"><span class="pre">[index</span> <span class="pre">entry</span> <span class="pre">field</span> <span class="pre">code]</span></code> are not like colons; Jimmy likes to place
+semicolons <code class="docutils literal"><span class="pre">[index</span> <span class="pre">entry</span> <span class="pre">field</span> <span class="pre">code]</span></code> everywhere.&#8221; is not.</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Generating Indexes in Word</a><ul>
+<li><a class="reference internal" href="#syntax-of-marked-entries">Syntax of Marked Entries</a><ul>
+<li><a class="reference internal" href="#bolding-switch">Bolding Switch</a></li>
+<li><a class="reference internal" href="#type-switch">Type Switch</a></li>
+<li><a class="reference internal" href="#italic-switch">Italic Switch</a></li>
+<li><a class="reference internal" href="#bookmark-switch">Bookmark Switch</a></li>
+<li><a class="reference internal" href="#text-substitution-switch">Text Substitution Switch</a></li>
+<li><a class="reference internal" href="#alternative-character-switch">Alternative Character Switch</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#generation-of-an-index">Generation of an Index</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to the WordHowTos&#8217;s documentation!</a></li>
+      <li>Next: <a href="toc.html" title="next chapter">Generating Table of Contents in Word</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/indexes.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Laura Santamaria.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/indexes.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
