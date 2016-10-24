@@ -12,6 +12,8 @@ documents. While the graphical user interface (GUI) can be used to generate
 automatic indexes, using fields to mark the entries provides much more
 flexibility and power.
 
+.. _syntax:
+
 Syntax of Marked Entries
 ========================
 When marking entries, use the ``XE`` field code. The field requires text that
@@ -113,20 +115,28 @@ non-English words. So, to get an entry to sort under the letter *D*::
   { XE "Entry" \y d }
 
 
-Generation of an Index
-======================
+Generation of an Index's Entries
+================================
 
-There are two methods to create an index: mark entries manually over time or
-create a table to auto-mark entries after the document is created.
-T
-Marking Entries
----------------
+There are three methods to create an index: marking entries manually over time
+with field codes, marking entries manually over time with the built-in GUI, or
+creating a table to automark entries after the document is created.
+
+Marking Entries with Field Codes
+--------------------------------
+The most powerful way to mark entries is to use the ``XE`` field code and any
+related switches. For more information, see :ref:`syntax`.
+
+Marking Entries with Word's Built-In GUI
+----------------------------------------
 To mark an entry manually, place the cursor where the entry should refer (i.e.,
 after a specific word, at the beginning of a section, etc.). Next, go to
 ``References > Mark Entry`` (under ``Index``). A dialog box will appear. Enter
 in the data, and then choose ``OK``. Looking under the paragraph marks will
 reveal the field with the ``XE`` field code and the data just entered.
 
+Marking Entries with AutoMark
+-----------------------------
 An alternate way of marking entries requires the document to be complete and
 index entries chosen. By creating a simple Excel spreadsheet with one column for
 the word that needs to be marked and one column for the index entry for that
