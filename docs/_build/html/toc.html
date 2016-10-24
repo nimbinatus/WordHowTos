@@ -1,0 +1,447 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Generating Table of Contents in Word &#8212; WordHowTos 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="WordHowTos 0.1 documentation" href="index.html" />
+    <link rel="prev" title="Generating Indexes in Word" href="indexes.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="generating-table-of-contents-in-word">
+<h1>Generating Table of Contents in Word<a class="headerlink" href="#generating-table-of-contents-in-word" title="Permalink to this headline">¶</a></h1>
+<p>Fields in Word can be used to create automatically updating Table of Contents
+(TOCs) for documents. While the graphical user interface (GUI) can be used to
+generate automatic TOCs (<code class="docutils literal"><span class="pre">Reference</span> <span class="pre">&gt;</span> <span class="pre">Table</span> <span class="pre">of</span> <span class="pre">Contents</span> <span class="pre">&gt;</span> <span class="pre">Insert</span></code>), creating
+the TOC with a field is more flexible and more powerful.</p>
+<div class="section" id="syntax-of-the-table-of-contents">
+<h2>Syntax of the Table of Contents<a class="headerlink" href="#syntax-of-the-table-of-contents" title="Permalink to this headline">¶</a></h2>
+<p>The field code is <code class="docutils literal"><span class="pre">TOC</span></code>. The field switches, or modifications to the field,
+are generally straightfoward, but there are some that may be confusing:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">\a</span></code>: the identifier switch</li>
+<li><code class="docutils literal"><span class="pre">\b</span></code>: the bookmark switch</li>
+<li><code class="docutils literal"><span class="pre">\c</span></code>: the sequence switch</li>
+<li><code class="docutils literal"><span class="pre">\d</span></code>: the chapter seperator switch</li>
+<li><code class="docutils literal"><span class="pre">\f</span></code>: the entry identifier switch</li>
+<li><code class="docutils literal"><span class="pre">\h</span></code>: the hyperlink switch</li>
+<li><code class="docutils literal"><span class="pre">\l</span></code>: the levels switch</li>
+<li><code class="docutils literal"><span class="pre">\n</span></code>: the page number exclusion switch</li>
+<li><code class="docutils literal"><span class="pre">\o</span></code>: the headings switch</li>
+<li><code class="docutils literal"><span class="pre">\p</span></code>: the entry-number separator switch</li>
+<li><code class="docutils literal"><span class="pre">\s</span></code>: the sequence numbering switch</li>
+<li><code class="docutils literal"><span class="pre">\t</span></code>: the custom style switch</li>
+<li><code class="docutils literal"><span class="pre">\u</span></code>: the applied style switch</li>
+<li><code class="docutils literal"><span class="pre">\w</span></code>: the tab preservation switch</li>
+<li><code class="docutils literal"><span class="pre">\x</span></code>: the newline preservation switch</li>
+<li><code class="docutils literal"><span class="pre">\z</span></code>: the web layout view switch</li>
+</ul>
+<p>Depending on how you intend to use the TOC, you may or may not use all the
+switches.</p>
+<div class="section" id="identifier-switch">
+<h3>Identifier Switch<a class="headerlink" href="#identifier-switch" title="Permalink to this headline">¶</a></h3>
+<p>Use the identifer switch, <code class="docutils literal"><span class="pre">\a</span></code>, to generate a TOC with the labels provided in
+captions. This is the switch to use when generating a Table of Figures and
+Tables. For example,</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">a</span> <span class="n">tables</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>generates a Table of Tables.</p>
+<p>In practice, the <code class="docutils literal"><span class="pre">\c</span></code> switch is more common and customizable.</p>
+</div>
+<div class="section" id="bookmark-switch">
+<h3>Bookmark Switch<a class="headerlink" href="#bookmark-switch" title="Permalink to this headline">¶</a></h3>
+<p>Use the bookmark switch, <code class="docutils literal"><span class="pre">\b</span></code>, in conjunction with a bookmark to generate TOCs
+for small sections of a document, such as a section of a larger document. This
+switch is especially useful for maintaining inner TOCs inside of sections or for
+generating special formatting for different sections of a larger TOC. This
+switch requires a bookmark name to be provided after it.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">b</span> <span class="n">bookmark_name</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>Note the lack of quotations around the bookmark name.</p>
+</div>
+<div class="section" id="sequence-switch">
+<h3>Sequence Switch<a class="headerlink" href="#sequence-switch" title="Permalink to this headline">¶</a></h3>
+<p>Use the sequence switch, <code class="docutils literal"><span class="pre">\c</span></code>, to generate a TOC of content marked with a
+<code class="docutils literal"><span class="pre">SEQ</span></code> field. Sequences are most commonly found with captions, but the <code class="docutils literal"><span class="pre">SEQ</span></code>
+field can be used for any ordered content. For example,:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">c</span> <span class="s2">&quot;section&quot;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>provides a TOC populated by any heading containing an <code class="docutils literal"><span class="pre">SEQ</span></code> field with a
+<code class="docutils literal"><span class="pre">section</span></code> identifier, which may be useful for high-level TOCs.</p>
+<p>Note the quotation marks around the sequence identifer.</p>
+</div>
+<div class="section" id="chapter-separator-switch">
+<h3>Chapter Separator Switch<a class="headerlink" href="#chapter-separator-switch" title="Permalink to this headline">¶</a></h3>
+<p>The chapter seperator switch (<code class="docutils literal"><span class="pre">\d</span></code>) must be used with the sequence numbering
+switch (<code class="docutils literal"><span class="pre">\s</span></code>).:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">s</span> <span class="n">chapter</span> \<span class="n">d</span> <span class="s2">&quot;.&quot;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>This field produces the following TOC:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Entry</span> <span class="mi">1</span> <span class="ow">in</span> <span class="n">Chapter</span> <span class="mf">1.</span><span class="o">...........</span><span class="mf">1.1</span>
+<span class="n">Entry</span> <span class="mi">2</span> <span class="ow">in</span> <span class="n">Chapter</span> <span class="mf">1.</span><span class="o">...........</span><span class="mf">1.5</span>
+<span class="n">Entry</span> <span class="mi">3</span> <span class="ow">in</span> <span class="n">Chapter</span> <span class="mf">2.</span><span class="o">...........</span><span class="mf">2.9</span>
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>If the chapter seperator switch is not provided with the sequence numbering
+switch, Word defaults to using a dash (<code class="docutils literal"><span class="pre">-</span></code>).</p>
+</div>
+<div class="section" id="entry-identifer-switch">
+<h3>Entry Identifer Switch<a class="headerlink" href="#entry-identifer-switch" title="Permalink to this headline">¶</a></h3>
+<p>Use the entry identifer switch (<code class="docutils literal"><span class="pre">\f</span></code>) when <code class="docutils literal"><span class="pre">TC</span></code> fields are used in the
+document. One situation where this switch may be helpful is in a TOC for an
+appendix full of tables without captions. The tables may be tagged with a <code class="docutils literal"><span class="pre">TC</span></code>
+field with an entry field of type <em>t</em>, and then an appropriate TOC may be made
+(with the appendix itself bookmarked as <em>appendix</em>):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">b</span> <span class="n">appendix</span> \<span class="n">f</span> <span class="n">t</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>Note the lack of quotation marks around the entry identifer.</p>
+</div>
+<div class="section" id="hyperlink-switch">
+<h3>Hyperlink Switch<a class="headerlink" href="#hyperlink-switch" title="Permalink to this headline">¶</a></h3>
+<p>The hyperlink switch (<code class="docutils literal"><span class="pre">\h</span></code>) just makes each TOC entry a clickable link. It is
+highly recommended for any Word doc that is provided in digital form. Use is
+very simple:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">h</span> <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="levels-switch">
+<h3>Levels Switch<a class="headerlink" href="#levels-switch" title="Permalink to this headline">¶</a></h3>
+<p>The levels switch, <code class="docutils literal"><span class="pre">\l</span></code>, defines one way to indicate the TOC levels in the
+document. This switch requires the use of <code class="docutils literal"><span class="pre">TC</span></code> fields to mark entries in a
+document, and those <code class="docutils literal"><span class="pre">TC</span></code> fields identify the outline levels for each entry.
+To show only those <code class="docutils literal"><span class="pre">TC</span></code> entries that are at levels 1 and 2, use:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">l</span> <span class="mi">1</span><span class="o">-</span><span class="mi">2</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that a range must be provided every time, so there must be a range of
+<code class="docutils literal"><span class="pre">1-1</span></code> for a TOC containing only level 1 entries.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">l</span> <span class="mi">1</span><span class="o">-</span><span class="mi">1</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>Note the lack of quotations around the range.</p>
+</div>
+<div class="section" id="page-number-exclusion-switch">
+<h3>Page Number Exclusion Switch<a class="headerlink" href="#page-number-exclusion-switch" title="Permalink to this headline">¶</a></h3>
+<p>Use the page number exclusion switch, <code class="docutils literal"><span class="pre">\n</span></code>, to remove page numbers at certain
+levels of a TOC. The field:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">n</span> <span class="mi">2</span><span class="o">-</span><span class="mi">2</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>would generate a TOC without page numbers at level 2. To remove all page numbers
+at all ranges, use the switch with no range:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">n</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>Note the lack of quotations around the range.</p>
+</div>
+<div class="section" id="headings-switch">
+<h3>Headings Switch<a class="headerlink" href="#headings-switch" title="Permalink to this headline">¶</a></h3>
+<p>The headings, or outline, switch, <code class="docutils literal"><span class="pre">\o</span></code>, defines one way to indicate the TOC
+levels in the document. This switch uses built-in heading styles to identify
+levels for the TOC. To show only level 1 and 2 headings in the TOC, use:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">o</span> <span class="s2">&quot;1-2&quot;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that a range must be provided every time, so there must be a range of
+<code class="docutils literal"><span class="pre">1-1</span></code> for a TOC containing only heading 1 entries.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">o</span> <span class="s2">&quot;1-1&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Note the quotations around the level range.</p>
+</div>
+<div class="section" id="entry-number-separator-switch">
+<h3>Entry-Number Separator Switch<a class="headerlink" href="#entry-number-separator-switch" title="Permalink to this headline">¶</a></h3>
+<p>Use the entry-number separator switch, <code class="docutils literal"><span class="pre">\p</span></code> to customize which character
+separates the TOC entry and the page number. For example, to have a line of
+dashes separate the entry and the page number, use</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">p</span> <span class="s2">&quot;-&quot;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>which provides the following TOC:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Entry</span> <span class="mi">1</span><span class="o">---------------</span><span class="mi">1</span>
+<span class="n">Entry</span> <span class="mi">2</span><span class="o">---------------</span><span class="mi">9</span>
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sequence-numbering-switch">
+<h3>Sequence Numbering Switch<a class="headerlink" href="#sequence-numbering-switch" title="Permalink to this headline">¶</a></h3>
+<p>Use the sequence numbering switch, <code class="docutils literal"><span class="pre">\s</span></code>, to provide the sequence number along
+with the page number. This switch requires the use of <code class="docutils literal"><span class="pre">SEQ</span></code> fields in the
+document. For example, to provide the chapter number along with the page number,
+the <code class="docutils literal"><span class="pre">SEQ</span></code> field must be used on each chapter (in this example, with an
+identifer of <em>chapter</em>), and then that identifer used in the TOC field.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">s</span> <span class="n">chapter</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>This field produces the following TOC:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Entry</span> <span class="mi">1</span> <span class="ow">in</span> <span class="n">Chapter</span> <span class="mf">1.</span><span class="o">...........</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">Entry</span> <span class="mi">2</span> <span class="ow">in</span> <span class="n">Chapter</span> <span class="mf">1.</span><span class="o">...........</span><span class="mi">1</span><span class="o">-</span><span class="mi">5</span>
+<span class="n">Entry</span> <span class="mi">3</span> <span class="ow">in</span> <span class="n">Chapter</span> <span class="mf">2.</span><span class="o">...........</span><span class="mi">2</span><span class="o">-</span><span class="mi">9</span>
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>Note the lack of quotation marks around the identifer.</p>
+</div>
+<div class="section" id="custom-style-switch">
+<h3>Custom Style Switch<a class="headerlink" href="#custom-style-switch" title="Permalink to this headline">¶</a></h3>
+<p>Use custom style switch, <code class="docutils literal"><span class="pre">\t</span></code>, to specify which custom styles belong at which
+level in the TOC. For example, if there are custom styles called <em>generated</em> and
+<em>jarvis</em> in the document&#8217;s style sheet, use the following field to place those
+styles at levels 2 and 3, respectively:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">t</span> <span class="s2">&quot;generated,2, jarvis,3&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>To have the built-in Heading 1 style as level 1 and <em>generated</em> as level 2, use
+a mixture of the <code class="docutils literal"><span class="pre">\o</span></code> and <code class="docutils literal"><span class="pre">\t</span></code> switches:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">o</span> <span class="s2">&quot;1-1&quot;</span> \<span class="n">t</span> <span class="s2">&quot;generated,2&quot;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>In practice, this may be useful if a user creates custom styles that are easier
+to remember (e.g., styles named for section headings) rather than using built-in
+styles.</p>
+</div>
+<div class="section" id="applied-outline-switch">
+<h3>Applied Outline Switch<a class="headerlink" href="#applied-outline-switch" title="Permalink to this headline">¶</a></h3>
+<p>The applied outline switch, <code class="docutils literal"><span class="pre">\u</span></code>, adds to the TOC paragraphs that are directly
+formatted as outlined at different levels through the <code class="docutils literal"><span class="pre">Paragraph</span></code> dialog. It
+is mainly used with the Document Map function of Word.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">u</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>In practice, this is rarely, if ever, used. If random text has begun to appear
+in a TOC, check the field for this switch, and remove this switch if it appears.</p>
+</div>
+<div class="section" id="tab-presentation-switch">
+<h3>Tab Presentation Switch<a class="headerlink" href="#tab-presentation-switch" title="Permalink to this headline">¶</a></h3>
+<p>The tab presentation switch, <code class="docutils literal"><span class="pre">\w</span></code>, simply prevents Word from stripping tab
+characters from the text of entries. For example, a heading of</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Heading</span>     <span class="n">Tabbed</span>
+</pre></div>
+</div>
+<p>would need the field to be:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">w</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>to generate a TOC of:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Heading</span>     <span class="n">Tabbed</span><span class="o">............</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>rather than:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Heading</span> <span class="n">Tabbed</span><span class="o">................</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>In practice, this is rarely, if ever, used.</p>
+</div>
+<div class="section" id="newline-presentation-switch">
+<h3>Newline Presentation Switch<a class="headerlink" href="#newline-presentation-switch" title="Permalink to this headline">¶</a></h3>
+<p>The newline presentation switch, <code class="docutils literal"><span class="pre">\x</span></code>, simply prevents Word from stripping tab
+characters from the text of entries. For example, a heading of</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Heading</span>
+<span class="n">New</span> <span class="n">Line</span>
+</pre></div>
+</div>
+<p>would need the field to be:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">x</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>to generate a TOC of:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Heading</span>
+<span class="n">New</span> <span class="n">Line</span><span class="o">........................</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>rather than:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Heading</span> <span class="n">New</span> <span class="n">Line</span><span class="o">................</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>In practice, this is rarely, if ever, used.</p>
+</div>
+<div class="section" id="web-layout-view-switch">
+<h3>Web Layout View Switch<a class="headerlink" href="#web-layout-view-switch" title="Permalink to this headline">¶</a></h3>
+<p>The Web Layout View switch, <code class="docutils literal"><span class="pre">\z</span></code>, just hides the page numbers and the
+seperators from the screen when the document is in Web Layout View.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TOC</span> \<span class="n">z</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>In practice, this is rarely, if ever, used. Word often adds it to TOCs created
+with the GUI.</p>
+</div>
+</div>
+<div class="section" id="syntax-of-marked-entries">
+<h2>Syntax of Marked Entries<a class="headerlink" href="#syntax-of-marked-entries" title="Permalink to this headline">¶</a></h2>
+<p>When explicitly marking entries for the TOC, use the <code class="docutils literal"><span class="pre">TC</span></code> field. The field
+requires the use of a name, provided in quotation marks, that will appear as is
+in the TOC itself:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TC</span> <span class="s2">&quot;Name of Entry&quot;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>which would appear in the TOC as:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Name</span> <span class="n">of</span> <span class="n">Entry</span><span class="o">..........</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>This field has very few switches:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">\f</span></code>: the type switch</li>
+<li><code class="docutils literal"><span class="pre">\l</span></code>: the level switch</li>
+<li><code class="docutils literal"><span class="pre">\n</span></code>: the numbering switch</li>
+</ul>
+<div class="section" id="type-switch">
+<h3>Type Switch<a class="headerlink" href="#type-switch" title="Permalink to this headline">¶</a></h3>
+<p>The type switch, <code class="docutils literal"><span class="pre">\f</span></code>, indicates which type of entry the field is marking,
+often a consideration when building a list of figures, illustrations, or tables.
+This switch requires a single, unique letter as a type identifer; the letter
+itself does not necessarily have to match the exact type of entry (e.g., figures
+may be identifed with a <em>g</em> if necessary).</p>
+<p>For example, to indicate a table entry:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TC</span> \<span class="n">f</span> <span class="n">t</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>The related TOC would then use an entry identifier switch to generate a list of
+only tables.</p>
+<p>If nothing is specified with this switch, the entry automatically goes into a
+generic TOC.</p>
+</div>
+<div class="section" id="level-switch">
+<h3>Level Switch<a class="headerlink" href="#level-switch" title="Permalink to this headline">¶</a></h3>
+<p>The level switch indicates which outline level the entry is.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TC</span> \<span class="n">l</span> <span class="mi">2</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>means the entry is a level 2 entry in the TOC outline.</p>
+</div>
+<div class="section" id="numbering-switch">
+<h3>Numbering Switch<a class="headerlink" href="#numbering-switch" title="Permalink to this headline">¶</a></h3>
+<p>Use numbering switch, <code class="docutils literal"><span class="pre">\n</span></code>, to prevent the entry from displaying a page number
+in the TOC.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="n">TC</span> \<span class="n">n</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>The default is to omit this switch, providing the page number in the TOC.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Generating Table of Contents in Word</a><ul>
+<li><a class="reference internal" href="#syntax-of-the-table-of-contents">Syntax of the Table of Contents</a><ul>
+<li><a class="reference internal" href="#identifier-switch">Identifier Switch</a></li>
+<li><a class="reference internal" href="#bookmark-switch">Bookmark Switch</a></li>
+<li><a class="reference internal" href="#sequence-switch">Sequence Switch</a></li>
+<li><a class="reference internal" href="#chapter-separator-switch">Chapter Separator Switch</a></li>
+<li><a class="reference internal" href="#entry-identifer-switch">Entry Identifer Switch</a></li>
+<li><a class="reference internal" href="#hyperlink-switch">Hyperlink Switch</a></li>
+<li><a class="reference internal" href="#levels-switch">Levels Switch</a></li>
+<li><a class="reference internal" href="#page-number-exclusion-switch">Page Number Exclusion Switch</a></li>
+<li><a class="reference internal" href="#headings-switch">Headings Switch</a></li>
+<li><a class="reference internal" href="#entry-number-separator-switch">Entry-Number Separator Switch</a></li>
+<li><a class="reference internal" href="#sequence-numbering-switch">Sequence Numbering Switch</a></li>
+<li><a class="reference internal" href="#custom-style-switch">Custom Style Switch</a></li>
+<li><a class="reference internal" href="#applied-outline-switch">Applied Outline Switch</a></li>
+<li><a class="reference internal" href="#tab-presentation-switch">Tab Presentation Switch</a></li>
+<li><a class="reference internal" href="#newline-presentation-switch">Newline Presentation Switch</a></li>
+<li><a class="reference internal" href="#web-layout-view-switch">Web Layout View Switch</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#syntax-of-marked-entries">Syntax of Marked Entries</a><ul>
+<li><a class="reference internal" href="#type-switch">Type Switch</a></li>
+<li><a class="reference internal" href="#level-switch">Level Switch</a></li>
+<li><a class="reference internal" href="#numbering-switch">Numbering Switch</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="indexes.html" title="previous chapter">Generating Indexes in Word</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/toc.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Laura Santamaria.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/toc.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
